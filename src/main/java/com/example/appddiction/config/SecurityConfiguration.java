@@ -30,7 +30,7 @@ public class SecurityConfiguration {
 		httpSecurity
 				.formLogin()
 				.loginPage("/login*")
-				.defaultSuccessUrl("/")
+				.defaultSuccessUrl("/manageusers")
 				.permitAll()
 				.and()
 				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

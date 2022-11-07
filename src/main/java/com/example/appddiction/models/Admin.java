@@ -12,7 +12,7 @@ public class Admin {
 	@Column(length = 50, nullable = false, unique = true)
 	private String username;
 
-	@Column(nullable = false, length = 16)
+	@Column(nullable = false, length = 100)
 	private String password;
 
 	@OneToOne
