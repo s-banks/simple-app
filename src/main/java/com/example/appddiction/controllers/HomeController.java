@@ -1,7 +1,9 @@
 package com.example.appddiction.controllers;
 
+import com.example.appddiction.models.Admin;
 import com.example.appddiction.models.Employee;
 import com.example.appddiction.repositories.EmployeeRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +30,8 @@ public class HomeController {
 	public String home(Model model, Employee employee) {
 		model.addAttribute("employees", employeeDao.findAll());
 		model.addAttribute("newEmployee", new Employee());
+		Admin currentAdmin = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("admin", currentAdmin);
 		return "manageusers";
 	}
 

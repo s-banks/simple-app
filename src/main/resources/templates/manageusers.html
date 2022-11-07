@@ -37,9 +37,16 @@
 		<button style="border-radius: 25px" type="submit" value="submit">Submit</button>
 	</form>
 </div>
+<br><br>
 <div>
 <p>
-
+	Logged in as:
+	<br>
+	User Name: <span th:text="${admin.getUsername()}"/>
+	<br>
+	Employee Name: <span th:text="${admin.getEmployee().getFirstName() + ' ' + admin.getEmployee().getLastName()}"/>
+	<br>
+	Employee ID#: <span th:text="${admin.getEmployee().getId()}"/>
 </p>
 </div>
 <div th:replace="partials/fragment :: scripts"></div>
