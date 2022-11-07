@@ -23,19 +23,24 @@
 <div>
 	<p>Add a user using the form below</p>
 	<form class="form" th:action="@{/addusers}" th:method="POST" th:object="${newEmployee}">
-		<label th:for="firstName"><span class="required">* </span>First Name:</label><br>
+		<label th:for="firstName"><span class="required">* </span>First Name:</label>
+		<br>
 		<input th:id="firstName" th:name="firstName" placeholder="First Name" required>
 		<br>
-		<label th:for="lastName"><span class="required">* </span>Last Name:</label><br>
+		<label th:for="lastName"><span class="required">* </span>Last Name:</label>
+		<br>
 		<input th:id="lastName" th:name="lastName" placeholder="Last Name" required>
 		<br>
 		<label th:for="email"><span class="required">* </span>Email:</label><br>
 		<input type="email" th:id="email" th:name="email" placeholder="Email@" required>
-		<br>
-		<button style="border-radius: 25px" type="submit" value="submit">Submit</button><br>
-
-
+		<br><br>
+		<button style="border-radius: 25px" type="submit" value="submit">Submit</button>
 	</form>
+</div>
+<div>
+<p>
+
+</p>
 </div>
 <div th:replace="partials/fragment :: scripts"></div>
 </body>

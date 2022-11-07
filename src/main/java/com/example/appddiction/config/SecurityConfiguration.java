@@ -29,7 +29,7 @@ public class SecurityConfiguration {
 	public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity
 				.formLogin()
-				.loginPage("/login*")
+				.loginPage("/login")
 				.defaultSuccessUrl("/manageusers")
 				.permitAll()
 				.and()

@@ -20,7 +20,8 @@ public class UserDetailsLoader extends Admin implements UserDetailsService {
 		Admin admin = admins.findByUsername(username);
 		if (admin == null) {
 			throw new UsernameNotFoundException("No user found for " + username);
+		} else {
+			return new UserWithRoles(admin);
 		}
-		return new UserWithRoles(admin);
 	}
 }
