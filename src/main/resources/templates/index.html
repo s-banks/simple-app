@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="partials/fragment :: head('Home')"></head>
+<body>
+<nav th:replace="partials/fragment :: navbar"></nav>
+<div></div>
+
+<div>
+	<table>
+	<tr>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Email</th>
+	</tr>
+	<tr th:each="user: ${users}">
+		<td><span th:text="${user.getFirstName()}"></span></td>
+		<td th:text="${user.getLastName()}"></td>
+		<td th:text="${user.getEmail()}"></td>
+	</tr>
+	</table>
+</div>
+<br><br>
+<div>
+	<p>Add a user using the form below</p>
+	<form class="form" th:action="@{/}" th:method="POST" th:object="${newUser}">
+		<label th:for="firstName"><span class="required">* </span>First Name:</label><br>
+		<input th:id="firstName" th:name="firstName" placeholder="First Name" required>
+		<br>
+		<label th:for="lastName"><span class="required">* </span>Last Name:</label><br>
+		<input th:id="lastName" th:name="lastName" placeholder="Last Name" required>
+		<br>
+		<label th:for="email"><span class="required">* </span>Email:</label><br>
+		<input type="email" th:id="email" th:name="email" placeholder="Email@" required>
+		<br>
+		<button style="border-radius: 25px" type="submit" value="submit">Submit</button><br>
+
+
+	</form>
+</div>
+<div th:replace="partials/fragment :: scripts"></div>
+</body>
+</html>
