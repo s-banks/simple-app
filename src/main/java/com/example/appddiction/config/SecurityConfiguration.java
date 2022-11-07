@@ -37,11 +37,11 @@ public class SecurityConfiguration {
 				.logoutSuccessUrl("/login?logout")
 				.and()
 				.authorizeRequests()
-				.antMatchers("/", "/register", "/manageusers")
+				.antMatchers("/", "/register")
 				.permitAll()
 				.and()
 				.authorizeRequests()
-				.antMatchers("/myloggedinstuff/**")
+				.antMatchers("/manageusers")
 				.authenticated();
 		return httpSecurity.build();
 	}

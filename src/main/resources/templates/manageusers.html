@@ -3,52 +3,61 @@
 <head th:replace="partials/fragment :: head('Manage Users')"></head>
 <body>
 <nav th:replace="partials/fragment :: navbar"></nav>
-<div></div>
+<main class="container">
+	<div>
+		<br>
+		<p th:align="center">Employee Database</p>
 
-<div>
-	<table>
-	<tr>
-		<th>First Name</th>
-		<th>Last Name</th>
-		<th>Email</th>
-	</tr>
-	<tr th:each="employee: ${employees}">
-		<td><span th:text="${employee.getFirstName()}"></span></td>
-		<td th:text="${employee.getLastName()}"></td>
-		<td th:text="${employee.getEmail()}"></td>
-	</tr>
-	</table>
-</div>
-<br><br>
-<div>
-	<p>Add a user using the form below</p>
-	<form class="form" th:action="@{/addusers}" th:method="POST" th:object="${newEmployee}">
-		<label th:for="firstName"><span class="required">* </span>First Name:</label>
-		<br>
-		<input th:id="firstName" th:name="firstName" placeholder="First Name" required>
-		<br>
-		<label th:for="lastName"><span class="required">* </span>Last Name:</label>
-		<br>
-		<input th:id="lastName" th:name="lastName" placeholder="Last Name" required>
-		<br>
-		<label th:for="email"><span class="required">* </span>Email:</label><br>
-		<input type="email" th:id="email" th:name="email" placeholder="Email@" required>
-		<br><br>
-		<button style="border-radius: 25px" type="submit" value="submit">Submit</button>
-	</form>
-</div>
-<br><br>
-<div>
-<p>
-	Logged in as:
-	<br>
-	User Name: <span th:text="${admin.getUsername()}"/>
-	<br>
-	Employee Name: <span th:text="${admin.getEmployee().getFirstName() + ' ' + admin.getEmployee().getLastName()}"/>
-	<br>
-	Employee ID#: <span th:text="${admin.getEmployee().getId()}"/>
-</p>
-</div>
+		<table class="table table-striped table-sm employeedb">
+			<thead class="table-dark">
+			<tr>
+				<th scope="col">First Name</th>
+				<th scope="col">Last Name</th>
+				<th scope="col">Email</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="employee: ${employees}">
+				<td><span th:text="${employee.getFirstName()}"></span></td>
+				<td th:text="${employee.getLastName()}"></td>
+				<td th:text="${employee.getEmail()}"></td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+	<br><br>
+	<div>
+		<p>Add a user using the form below</p>
+		<form class="form" th:action="@{/addusers}" th:method="POST" th:object="${newEmployee}">
+			<label th:for="firstName"><span class="required">* </span>First Name:</label>
+			<br>
+			<input th:id="firstName" th:name="firstName" placeholder="First Name" required>
+			<br>
+			<label th:for="lastName"><span class="required">* </span>Last Name:</label>
+			<br>
+			<input th:id="lastName" th:name="lastName" placeholder="Last Name" required>
+			<br>
+			<label th:for="email"><span class="required">* </span>Email:</label><br>
+			<input type="email" th:id="email" th:name="email" placeholder="Email@" required>
+			<br><br>
+			<button style="border-radius: 25px" type="submit" value="submit">Submit</button>
+		</form>
+	</div>
+	<br><br>
+	<div>
+		<p>
+			Logged in as:
+			<br>
+			User Name: <span th:text="${admin.getUsername()}"/>
+			<br>
+			Employee Name: <span
+				th:text="${admin.getEmployee().getFirstName() + ' ' + admin.getEmployee().getLastName()}"/>
+			<br>
+			Employee ID#: <span th:text="${admin.getEmployee().getId()}"/>
+		</p>
+	</div>
+</main>
 <div th:replace="partials/fragment :: scripts"></div>
 </body>
 </html>
+
