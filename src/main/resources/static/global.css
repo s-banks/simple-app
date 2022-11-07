@@ -3,3 +3,13 @@
 	margin-left: auto;
 	margin-right: auto;
 }
+
+.accessalert {
+	text-align: center;
+	width: 60%;
+	margin-top: 30px;
+}
+
+.trashCan {
+	padding: 0;
+}

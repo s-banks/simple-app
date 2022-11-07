@@ -43,7 +43,7 @@ public class HomeController {
 
 	@PostMapping("/delusr")
 	public String delusr(HttpServletRequest request) {
-		String employee = request.getParameter("delusr");
+		String employee = request.getParameter("delUsr");
 		employeeDao.deleteById(Long.valueOf(employee));
 		return "redirect:/manageusers";
 	}
