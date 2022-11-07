@@ -3,8 +3,8 @@ package com.example.appddiction.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "employee")
+public class Employee {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,17 +19,17 @@ public class User {
 	@Column(nullable = false, unique = true)
 	private String email;
 
-	public User() {
+	public Employee() {
 	}
 
-	public User(long id, String firstName, String lastName, String email) {
+	public Employee(long id, String firstName, String lastName, String email) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 	}
 
-	public User(String firstName, String lastName, String email) {
+	public Employee(String firstName, String lastName, String email) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;

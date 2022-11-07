@@ -1,7 +1,7 @@
 package com.example.appddiction.controllers;
 
-import com.example.appddiction.models.User;
-import com.example.appddiction.repositories.UserRepository;
+import com.example.appddiction.models.Employee;
+import com.example.appddiction.repositories.EmployeeRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,30 +13,35 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class HomeController {
 
-	private final UserRepository userDao;
+	private final EmployeeRepository employeeDao;
 
-	public HomeController(UserRepository userDao) {
-		this.userDao = userDao;
+	public HomeController(EmployeeRepository employeeDao) {
+		this.employeeDao = employeeDao;
 	}
 
-	@GetMapping("/")
-	public String home(Model model, User user) {
-		model.addAttribute("users", userDao.findAll());
-		model.addAttribute("newUser", new User());
-		return "index";
+	@GetMapping("/login")
+	public String showLoginForm() {
+		return "login";
 	}
 
-	@PostMapping("/")
-	public String newUser(User user, HttpServletRequest request, RedirectAttributes rm) {
-		userDao.save(user);
-		return "redirect:/";
+	@GetMapping("/manageusers")
+	public String home(Model model, Employee employee) {
+		model.addAttribute("employees", employeeDao.findAll());
+		model.addAttribute("newEmployee", new Employee());
+		return "manageusers";
+	}
+
+	@PostMapping("/addusers")
+	public String newUser(Employee employee, HttpServletRequest request, RedirectAttributes rm) {
+		employeeDao.save(employee);
+		return "redirect:/manageusers";
 	}
 
 	@PostMapping("/delusr")
 	public String delusr(HttpServletRequest request) {
-		String user = request.getParameter("delusr");
-		userDao.deleteById(Long.valueOf(user));
-		return "redirect:/profile";
+		String employee = request.getParameter("delusr");
+		employeeDao.deleteById(Long.valueOf(employee));
+		return "redirect:/manageusers";
 	}
 
 }
