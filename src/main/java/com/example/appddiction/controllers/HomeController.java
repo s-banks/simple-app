@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 @Controller
 public class HomeController {
@@ -27,7 +28,7 @@ public class HomeController {
 	}
 
 	@GetMapping("/manageusers")
-	public String home(Model model, Employee employee) {
+	public String home(Model model) {
 		model.addAttribute("employees", employeeDao.findAll());
 		model.addAttribute("newEmployee", new Employee());
 		Admin currentAdmin = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -45,6 +46,17 @@ public class HomeController {
 	public String delusr(HttpServletRequest request) {
 		String employee = request.getParameter("delUsr");
 		employeeDao.deleteById(Long.valueOf(employee));
+		return "redirect:/manageusers";
+	}
+
+	@PostMapping("/editusr")
+	public String editusr(HttpServletRequest request) {
+		Employee editEmp = employeeDao.getReferenceById(Long.valueOf(request.getParameter("edit-id")));
+		System.out.println("emp ID: " + editEmp.getId());
+		editEmp.setFirstName(request.getParameter("edit-fname"));
+		editEmp.setLastName(request.getParameter("edit-lname"));
+		editEmp.setEmail(request.getParameter("edit-email"));
+		employeeDao.save(editEmp);
 		return "redirect:/manageusers";
 	}
 

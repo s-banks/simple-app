@@ -10,6 +10,14 @@
 	margin-top: 30px;
 }
 
-.trashCan {
+.trashCan, .editBtn {
 	padding: 0;
+}
+
+.iconCell {
+	text-align: center;
+}
+
+.required {
+	color:  #ef2c61;
 }
