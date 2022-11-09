@@ -52,7 +52,6 @@ public class HomeController {
 	@PostMapping("/editusr")
 	public String editusr(HttpServletRequest request) {
 		Employee editEmp = employeeDao.getReferenceById(Long.valueOf(request.getParameter("edit-id")));
-		System.out.println("emp ID: " + editEmp.getId());
 		editEmp.setFirstName(request.getParameter("edit-fname"));
 		editEmp.setLastName(request.getParameter("edit-lname"));
 		editEmp.setEmail(request.getParameter("edit-email"));
