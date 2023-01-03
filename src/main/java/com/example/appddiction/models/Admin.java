@@ -15,7 +15,7 @@ public class Admin {
 	@Column(nullable = false, length = 100)
 	private String password;
 
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="employee_id")
 	private Employee employee;
 

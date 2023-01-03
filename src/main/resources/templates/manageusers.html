@@ -18,7 +18,7 @@
 			</tr>
 			</thead>
 			<tbody>
-			<tr th:each="employee: ${employees}">
+			<tr th:each="employee: ${employees}" th:unless="${employee.getId() == admin.getEmployee().getId()}">
 				<td th:text="${employee.getFirstName()}"></td>
 				<td th:text="${employee.getLastName()}"></td>
 				<td th:text="${employee.getEmail()}"></td>
