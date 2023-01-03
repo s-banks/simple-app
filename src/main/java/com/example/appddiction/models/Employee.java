@@ -1,6 +1,7 @@
 package com.example.appddiction.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "employee")
@@ -18,6 +19,9 @@ public class Employee {
 
 	@Column(nullable = false, unique = true)
 	private String email;
+
+	@OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Admin admin;
 
 	public Employee() {
 	}

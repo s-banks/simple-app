@@ -1,4 +1,4 @@
-use appddiction_db;
+use simpleapp_db;
 
 INSERT INTO `employee` (`id`, `email`, `first_name`, `last_name`) VALUES ('1', 'j.test@example.org', 'Joseph', 'Test');
 INSERT INTO `employee` (`id`, `email`, `first_name`, `last_name`) VALUES ('2', 'vullrich@example.com', 'Lillie', 'Wisoky');
