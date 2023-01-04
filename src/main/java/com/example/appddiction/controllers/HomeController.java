@@ -96,10 +96,14 @@ public class HomeController {
 			admin.setPassword(passwordEncoder.encode(admin.getPassword()));
 			char firstLetter = admin.getEmployee().getFirstName().toLowerCase().charAt(0);
 			String uName = firstLetter + admin.getEmployee().getLastName().toLowerCase();
-			int i = 1;
+			int count = 1;
 			while (adminDao.findByUsername(uName) != null) {
-				uName = uName + i;
-				i++;
+				String newName = uName + count;
+				while (adminDao.findByUsername(newName) != null) {
+					count++;
+					newName = uName + count;
+				}
+				uName = newName;
 			}
 				admin.setUsername(uName);
 				adminDao.save(admin);
