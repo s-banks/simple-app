@@ -120,13 +120,10 @@ public class HomeController {
 	public String delAdmin(HttpServletRequest request, RedirectAttributes ra) {
 		try {
 			String admin = request.getParameter("delAdmin");
-			System.out.println(admin);
 			adminDao.getReferenceById(Long.valueOf(admin)).getEmployee().setAdmin(null);
 			adminDao.deleteById(Long.valueOf(admin));
-			System.out.println("I should be g2g");
 			return "redirect:/manageusers";
 		} catch (Exception e) {
-			System.out.println("Well, crap");
 			ra.addFlashAttribute("errorMsg", e.getClass().getSimpleName());
 			return "redirect:/manageusers?error";
 		}
