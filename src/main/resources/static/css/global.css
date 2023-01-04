@@ -21,3 +21,8 @@
 .required {
 	color:  #ef2c61;
 }
+
+.forms {
+	display: flex;
+	justify-content: space-around;
+}
