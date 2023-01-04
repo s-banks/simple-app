@@ -26,11 +26,12 @@ public class Employee {
 	public Employee() {
 	}
 
-	public Employee(long id, String firstName, String lastName, String email) {
+	public Employee(long id, String firstName, String lastName, String email, Admin admin) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.admin = admin;
 	}
 
 	public Employee(String firstName, String lastName, String email) {
@@ -69,5 +70,13 @@ public class Employee {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Admin getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
 	}
 }

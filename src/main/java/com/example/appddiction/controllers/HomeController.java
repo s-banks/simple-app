@@ -6,13 +6,11 @@ import com.example.appddiction.repositories.AdminRepository;
 import com.example.appddiction.repositories.EmployeeRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.Comparator;
 import java.util.List;
@@ -22,7 +20,7 @@ public class HomeController {
 
 	private final EmployeeRepository employeeDao;
 	private final AdminRepository adminDao;
-	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	PasswordEncoder passwordEncoder;
 
 	public HomeController(EmployeeRepository employeeDao, AdminRepository adminDao, PasswordEncoder passwordEncoder) {
 		this.employeeDao = employeeDao;
@@ -66,7 +64,7 @@ public class HomeController {
 	}
 
 	@PostMapping("/delusr")
-	public String delusr(HttpServletRequest request) {
+	public String delUsr(HttpServletRequest request) {
 		try {
 			String employee = request.getParameter("delUsr");
 			employeeDao.deleteById(Long.valueOf(employee));
@@ -77,7 +75,7 @@ public class HomeController {
 	}
 
 	@PostMapping("/editusr")
-	public String editusr(HttpServletRequest request) {
+	public String editUsr(HttpServletRequest request) {
 		try {
 			Employee editEmp = employeeDao.getReferenceById(Long.valueOf(request.getParameter("edit-id")));
 			editEmp.setFirstName(request.getParameter("edit-fname"));
@@ -114,6 +112,22 @@ public class HomeController {
 			} else {
 				ra.addFlashAttribute("errorMsg", "Something went wrong");
 			}
+			return "redirect:/manageusers?error";
+		}
+	}
+
+	@PostMapping("/deladmin")
+	public String delAdmin(HttpServletRequest request, RedirectAttributes ra) {
+		try {
+			String admin = request.getParameter("delAdmin");
+			System.out.println(admin);
+			adminDao.getReferenceById(Long.valueOf(admin)).getEmployee().setAdmin(null);
+			adminDao.deleteById(Long.valueOf(admin));
+			System.out.println("I should be g2g");
+			return "redirect:/manageusers";
+		} catch (Exception e) {
+			System.out.println("Well, crap");
+			ra.addFlashAttribute("errorMsg", e.getClass().getSimpleName());
 			return "redirect:/manageusers?error";
 		}
 	}
