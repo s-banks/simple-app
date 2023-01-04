@@ -19,6 +19,8 @@
 				<th scope="col">Email</th>
 				<th scope="col">Edit Employee</th>
 				<th scope="col">Delete Employee</th>
+				<th scope="col">Admin Username</th>
+				<th scope="col">Remove Admin</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -39,6 +41,17 @@
 						<button type="submit" class="btn trashCan"
 								th:unless="${employee.getId() == admin.getEmployee().getId()}"><i id="trashicon"
 																								  class="fa-solid fa-trash-can trashCan"></i>
+						</button>
+					</td>
+				</form>
+				<td th:if="${employee.getAdmin()} != null"><span th:text="${employee.getAdmin().getUsername()}"></span></td>
+				<td th:if="${employee.getAdmin()} == null"><span>  </span></td>
+
+				<form th:action="@{/deladmin}" th:method="POST"
+					  onsubmit="return confirm('Do you really want to remove this employee as an admin?');">
+					<td class="iconCell">
+						<input type="hidden" th:name="delAdmin" th:id="delAdmin" th:if="${employee.getAdmin()} != null" th:value="${employee.getAdmin().getId()}">
+						<button type="submit" class="btn trashCan" th:if="${employee.getAdmin()} != null" th:unless="${employee.getId() == admin.getEmployee().getId()}"><i class="fa-solid fa-user-xmark trashCan"></i>
 						</button>
 					</td>
 				</form>
