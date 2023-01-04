@@ -16,7 +16,7 @@ public class Admin {
 	private String password;
 
 	@OneToOne
-	@JoinColumn(name="employee_id")
+	@JoinColumn(name="employee_id" , unique = true, nullable = false)
 	private Employee employee;
 
 	public Admin() {
