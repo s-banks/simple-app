@@ -96,13 +96,13 @@ public class HomeController {
 			admin.setPassword(passwordEncoder.encode(admin.getPassword()));
 			char firstLetter = admin.getEmployee().getFirstName().toLowerCase().charAt(0);
 			String uName = firstLetter + admin.getEmployee().getLastName().toLowerCase();
-			if (adminDao.findByUsername(uName) == null) {
+			int i = 1;
+			while (adminDao.findByUsername(uName) != null) {
+				uName = uName + i;
+				i++;
+			}
 				admin.setUsername(uName);
 				adminDao.save(admin);
-			} else {
-				admin.setUsername(uName + "1");
-				adminDao.save(admin);
-			}
 			return "redirect:/manageusers";
 		} catch (Exception e) {
 			if (e.getClass().getSimpleName().equals("DataIntegrityViolationException")) {
