@@ -6,6 +6,10 @@
 <main class="container">
 	<div>
 		<br>
+		<div class="alert alert-danger" th:if="${param.error}" th:align="center">
+			There was a problem.<br />
+			Reason: <span th:text="${errorMsg}">Wrong input!</span>
+		</div>
 		<h4 th:align="center">Employee Database</h4>
 		<table class="table table-striped table-sm employeedb">
 			<thead class="table-dark">
@@ -102,13 +106,11 @@
 			<p>Make an employee an admin </p>
 			<form class="form" th:action="@{/makeadmin}" th:method="POST">
 				<label for="employee"><span class="required">* </span>Select an Employee</label><br>
-				<select name="employee" id="employee">
-					<option value="0">Employee Name</option>
+				<select name="employee" id="employee" required>
+					<option value="" selected>Employee Name</option>
 					<option th:each="employee: ${employees}" th:value="${employee.getId()}"
 							th:text="${employee.getFirstName()} + ' ' + ${employee.getLastName()}"></option>
 				</select><br><br>
-<!--				<label for="username"><span class="required">* </span>User Name</label><br>-->
-<!--				<input type="text" id="username" name="username" placeholder="User Name" required><br><br>-->
 				<label for="password"><span class="required">* </span>Password</label><br>
 				<input type="password" id="password" name="password" placeholder="Password" required>
 				<br><br>
