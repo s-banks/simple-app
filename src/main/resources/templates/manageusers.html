@@ -31,7 +31,7 @@
 				<td class="iconCell">
 					<button type="submit" class="btn editBtn" data-bs-toggle="modal" th:data-empid="${employee.getId()}"
 							data-bs-target="#Modal">
-						<i id="editicon" class="fa-solid fa-pen-to-square"></i>
+						<i id="editicon" class="fa-solid fa-pen-to-square" title="Edit Employee"></i>
 					</button>
 				</td>
 				<form th:action="@{/delusr}" th:method="POST"
@@ -40,7 +40,7 @@
 						<input type="hidden" th:name="delUsr" th:id="delUsr" th:value="${employee.getId()}">
 						<button type="submit" class="btn trashCan"
 								th:unless="${employee.getId() == admin.getEmployee().getId()}"><i id="trashicon"
-																								  class="fa-solid fa-trash-can trashCan"></i>
+																								  class="fa-solid fa-trash-can trashCan" title="Delete Employee"></i>
 						</button>
 					</td>
 				</form>
@@ -51,7 +51,7 @@
 					  onsubmit="return confirm('Do you really want to remove this employee as an admin?');">
 					<td class="iconCell">
 						<input type="hidden" th:name="delAdmin" th:id="delAdmin" th:if="${employee.getAdmin()} != null" th:value="${employee.getAdmin().getId()}">
-						<button type="submit" class="btn trashCan" th:if="${employee.getAdmin()} != null" th:unless="${employee.getId() == admin.getEmployee().getId()}"><i class="fa-solid fa-user-xmark trashCan"></i>
+						<button type="submit" class="btn trashCan" th:if="${employee.getAdmin()} != null" th:unless="${employee.getId() == admin.getEmployee().getId()}"><i class="fa-solid fa-user-xmark trashCan" title="Remove Admin"></i>
 						</button>
 					</td>
 				</form>
