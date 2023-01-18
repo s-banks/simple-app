@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -36,8 +35,7 @@ public class HomeController {
 	@GetMapping("/manageusers")
 	public String home(Model model) {
 		try {
-			List<Employee> employees = employeeDao.findAll();
-			employees.sort(Comparator.comparing(Employee::getLastName));
+			List<Employee> employees = employeeDao.findAllByOrderByLastNameAsc();
 			model.addAttribute("employees", employees);
 			model.addAttribute("newEmployee", new Employee());
 			Admin currentAdmin = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
