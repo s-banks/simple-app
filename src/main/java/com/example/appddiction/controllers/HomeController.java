@@ -36,9 +36,12 @@ public class HomeController {
 	public String home(Model model) {
 		try {
 			List<Employee> employees = employeeDao.findAllByOrderByLastNameAsc();
-			model.addAttribute("employees", employees);
-			model.addAttribute("newEmployee", new Employee());
+			List<Employee> nonAdmins = new ArrayList<>(employees);
 			Admin currentAdmin = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			nonAdmins.removeIf(nonAdmin -> nonAdmin.getAdmin() != null);0
+			model.addAttribute("employees", employees);
+			model.addAttribute("nonAdmins", nonAdmins);
+			model.addAttribute("newEmployee", new Employee());
 			model.addAttribute("admin", currentAdmin);
 			return "manageusers";
 		} catch (Exception e) {
