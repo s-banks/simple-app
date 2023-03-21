@@ -38,7 +38,7 @@ public class HomeController {
 			List<Employee> employees = employeeDao.findAllByOrderByLastNameAsc();
 			List<Employee> nonAdmins = new ArrayList<>(employees);
 			Admin currentAdmin = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			nonAdmins.removeIf(nonAdmin -> nonAdmin.getAdmin() != null);0
+			nonAdmins.removeIf(nonAdmin -> nonAdmin.getAdmin() != null);
 			model.addAttribute("employees", employees);
 			model.addAttribute("nonAdmins", nonAdmins);
 			model.addAttribute("newEmployee", new Employee());
