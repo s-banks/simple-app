@@ -93,14 +93,12 @@ public class HomeController {
 			char firstLetter = admin.getEmployee().getFirstName().toLowerCase().charAt(0);
 			String uName = firstLetter + admin.getEmployee().getLastName().toLowerCase();
 			int count = 1;
+
 			while (adminDao.findByUsername(uName) != null) {
-				String newName = uName + count;
-				while (adminDao.findByUsername(newName) != null) {
-					count++;
-					newName = uName + count;
-				}
-				uName = newName;
+				uName = firstLetter + admin.getEmployee().getLastName().toLowerCase() + count;
+				count++;
 			}
+
 				admin.setUsername(uName);
 				adminDao.save(admin);
 			return "redirect:/manageusers";
