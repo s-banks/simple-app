@@ -40,7 +40,7 @@
 					<td class="iconCell">
 						<input type="hidden" th:name="delUsr" th:value="${employee.getId()}">
 						<button type="submit" class="btn trashCan"
-								th:unless="${employee.getId() == admin.getEmployee().getId()}"><i id="trashicon" class="fa-solid fa-trash-can trashCan" title="Delete Employee"></i>
+								th:unless="${employee.getId() == admin.getEmployee().getId() or employee.getAdmin() != null}"><i id="trashicon" class="fa-solid fa-trash-can trashCan" title="Delete Employee"></i>
 						</button>
 					</td>
 				</form>
