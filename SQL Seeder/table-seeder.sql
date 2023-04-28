@@ -101,4 +101,4 @@ INSERT INTO `employee` (`id`, `email`, `first_name`, `last_name`) VALUES ('98', 
 INSERT INTO `employee` (`id`, `email`, `first_name`, `last_name`) VALUES ('99', 'mckayla.heaney@example.org', 'Nathan', 'Oberbrunner');
 INSERT INTO `employee` (`id`, `email`, `first_name`, `last_name`) VALUES ('100', 'jkuvalis@example.com', 'Dayne', 'Parker');
 
-INSERT INTO `admin` (`id`, `password`, `username`, `employee_id`) VALUES ('1', '$2a$10$uwZkt4sTwKzFp.gnm8UJbe1Z3BeMWdfJ3ZXIbBFRjLdFumuJM4hJi', 'jtest', '1');
+INSERT INTO `admin` (`id`, `password`, `username`, `employee_id`, `is_super_admin` ) VALUES ('1', '$2a$10$uwZkt4sTwKzFp.gnm8UJbe1Z3BeMWdfJ3ZXIbBFRjLdFumuJM4hJi', 'jtest', '1', '1');
