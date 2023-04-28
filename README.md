@@ -1,7 +1,7 @@
 # simple-app
 An app created as part of an interview
 
-I didn't finish the full CRUD functionality during the interview and decided to complete it.
+I didn't finish the full CRUD functionality during the interview and decided to complete it. I went for a mid 1990s look as far as styling goes.
 
 Use the info in example.properties to create your application.properties in the same location. Make sure to update your MySQL username and password to 
 work with your server.
