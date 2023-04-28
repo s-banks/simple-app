@@ -99,8 +99,8 @@ public class HomeController {
 				count++;
 			}
 
-				admin.setUsername(uName);
-				adminDao.save(admin);
+			admin.setUsername(uName);
+			adminDao.save(admin);
 			return "redirect:/manageusers";
 		} catch (Exception e) {
 			if (e.getClass().getSimpleName().equals("DataIntegrityViolationException")) {
@@ -118,6 +118,27 @@ public class HomeController {
 			String admin = request.getParameter("delAdmin");
 			adminDao.getReferenceById(Long.valueOf(admin)).getEmployee().setAdmin(null);
 			adminDao.deleteById(Long.valueOf(admin));
+			return "redirect:/manageusers";
+		} catch (Exception e) {
+			ra.addFlashAttribute("errorMsg", e.getClass().getSimpleName());
+			return "redirect:/manageusers?error";
+		}
+	}
+
+	@PostMapping("/superadmin")
+	public String superAdmin(HttpServletRequest request, RedirectAttributes ra) {
+		try {
+			String adminId = request.getParameter("superAdmin");
+			System.out.println(adminId);
+			Admin admin = adminDao.getReferenceById(Long.valueOf(adminId));
+			System.out.println(admin.getIsSuperAdmin());
+			if (admin.getIsSuperAdmin()) {
+				admin.setIsSuperAdmin(false);
+				adminDao.save(admin);
+			} else {
+				admin.setIsSuperAdmin(true);
+				adminDao.save(admin);
+			}
 			return "redirect:/manageusers";
 		} catch (Exception e) {
 			ra.addFlashAttribute("errorMsg", e.getClass().getSimpleName());
