@@ -59,7 +59,7 @@
 					  onsubmit="return confirm('Do you really want to change the Super Admin status?');">
 					<td class="iconCell" th:unless="${not admin.isSuperAdmin}">
 						<input type="hidden" th:name="superAdmin" th:if="${employee.getAdmin()} != null" th:value="${employee.getAdmin().getId()}">
-						<button type="submit" class="btn trashCan" th:if="${employee.getAdmin()} != null" th:unless="${employee.getId() == admin.getEmployee().getId() or not admin.isSuperAdmin}"><i th:if="${not employee.admin.isSuperAdmin}" class="fa-solid fa-circle" style="color: #e22828;"></i><i th:if="${employee.admin.isSuperAdmin}" class="fa-solid fa-circle" style="color: #1cca1c;"></i>
+						<button type="submit" class="btn trashCan" th:if="${employee.getAdmin()} != null" th:unless="${employee.getId() == admin.getEmployee().getId() or not admin.isSuperAdmin}"><i th:if="${not employee.admin.isSuperAdmin}" class="fa-solid fa-circle" style="color: #e22828;" title="Click to make Super Admin"></i><i th:if="${employee.admin.isSuperAdmin}" class="fa-solid fa-circle" style="color: #1cca1c;" title="Click to remove Super Admin"></i>
 						</button>
 					</td>
 				</form>
