@@ -19,6 +19,9 @@ public class Admin {
 	@JoinColumn(name="employee_id" , unique = true, nullable = false)
 	private Employee employee;
 
+	@Column(nullable = false, columnDefinition = "boolean default false")
+	private boolean isSuperAdmin;
+
 	public Admin() {
 	}
 
@@ -27,11 +30,12 @@ public class Admin {
 		this.password = password;
 	}
 
-	public Admin(long id, String username, String password, Employee employee) {
+	public Admin(long id, String username, String password, Employee employee, boolean isSuperAdmin) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.employee = employee;
+		this.isSuperAdmin = isSuperAdmin;
 	}
 
 	public Admin(Admin copy) {
@@ -39,6 +43,7 @@ public class Admin {
 		username = copy.username;
 		password = copy.password;
 		employee = copy.employee;
+		isSuperAdmin = copy.isSuperAdmin;
 	}
 
 	public long getId() {
@@ -71,5 +76,13 @@ public class Admin {
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+
+	public boolean getIsSuperAdmin() {
+		return isSuperAdmin;
+	}
+
+	public void setIsSuperAdmin(boolean isSuperAdmin) {
+		this.isSuperAdmin = isSuperAdmin;
 	}
 }
