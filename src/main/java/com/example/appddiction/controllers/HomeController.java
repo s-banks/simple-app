@@ -93,12 +93,10 @@ public class HomeController {
 			char firstLetter = admin.getEmployee().getFirstName().toLowerCase().charAt(0);
 			String uName = firstLetter + admin.getEmployee().getLastName().toLowerCase();
 			int count = 1;
-
 			while (adminDao.findByUsername(uName) != null) {
 				uName = firstLetter + admin.getEmployee().getLastName().toLowerCase() + count;
 				count++;
 			}
-
 			admin.setUsername(uName);
 			adminDao.save(admin);
 			return "redirect:/manageusers";
@@ -129,9 +127,7 @@ public class HomeController {
 	public String superAdmin(HttpServletRequest request, RedirectAttributes ra) {
 		try {
 			String adminId = request.getParameter("superAdmin");
-			System.out.println(adminId);
 			Admin admin = adminDao.getReferenceById(Long.valueOf(adminId));
-			System.out.println(admin.getIsSuperAdmin());
 			if (admin.getIsSuperAdmin()) {
 				admin.setIsSuperAdmin(false);
 				adminDao.save(admin);
