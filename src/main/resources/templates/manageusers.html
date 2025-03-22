@@ -20,7 +20,8 @@
 				<th scope="col">Edit Employee</th>
 				<th scope="col">Delete Employee</th>
 				<th scope="col">Admin Username</th>
-				<th scope="col">Remove Admin</th>
+				<th scope="col" th:if="${admin.getIsSuperAdmin() == true}">Remove Admin</th>
+				<th scope="col" th:if="${admin.getIsSuperAdmin() == true}">Super Admin</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -37,10 +38,9 @@
 				<form th:action="@{/delusr}" th:method="POST"
 					  onsubmit="return confirm('Do you really want to delete this employee?');">
 					<td class="iconCell">
-						<input type="hidden" th:name="delUsr" th:id="delUsr" th:value="${employee.getId()}">
+						<input type="hidden" th:name="delUsr" th:value="${employee.getId()}">
 						<button type="submit" class="btn trashCan"
-								th:unless="${employee.getId() == admin.getEmployee().getId()}"><i id="trashicon"
-																								  class="fa-solid fa-trash-can trashCan" title="Delete Employee"></i>
+								th:unless="${employee.getId() == admin.getEmployee().getId() or employee.getAdmin() != null}"><i id="trashicon" class="fa-solid fa-trash-can trashCan" title="Delete Employee"></i>
 						</button>
 					</td>
 				</form>
@@ -49,9 +49,17 @@
 
 				<form th:action="@{/deladmin}" th:method="POST"
 					  onsubmit="return confirm('Do you really want to remove this employee as an admin?');">
-					<td class="iconCell">
-						<input type="hidden" th:name="delAdmin" th:id="delAdmin" th:if="${employee.getAdmin()} != null" th:value="${employee.getAdmin().getId()}">
-						<button type="submit" class="btn trashCan" th:if="${employee.getAdmin()} != null" th:unless="${employee.getId() == admin.getEmployee().getId()}"><i class="fa-solid fa-user-xmark trashCan" title="Remove Admin"></i>
+					<td class="iconCell" th:unless="${not admin.isSuperAdmin}">
+						<input type="hidden" th:name="delAdmin" th:if="${employee.getAdmin()} != null" th:value="${employee.getAdmin().getId()}">
+						<button type="submit" class="btn trashCan" th:if="${employee.getAdmin()} != null" th:unless="${employee.getId() == admin.getEmployee().getId() or not admin.isSuperAdmin}"><i class="fa-solid fa-user-xmark trashCan" title="Remove Admin"></i>
+						</button>
+					</td>
+				</form>
+				<form th:action="@{/superadmin}" th:method="POST"
+					  onsubmit="return confirm('Do you really want to change the Super Admin status?');">
+					<td class="iconCell" th:unless="${not admin.isSuperAdmin}">
+						<input type="hidden" th:name="superAdmin" th:if="${employee.getAdmin()} != null" th:value="${employee.getAdmin().getId()}">
+						<button type="submit" class="btn trashCan" th:if="${employee.getAdmin()} != null" th:unless="${employee.getId() == admin.getEmployee().getId() or not admin.isSuperAdmin}"><i th:if="${not employee.admin.isSuperAdmin}" class="fa-solid fa-circle" style="color: #e22828;" title="Click to make Super Admin"></i><i th:if="${employee.admin.isSuperAdmin}" class="fa-solid fa-circle" style="color: #1cca1c;" title="Click to remove Super Admin"></i>
 						</button>
 					</td>
 				</form>
